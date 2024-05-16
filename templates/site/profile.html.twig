@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+    {% block title %}
+        Mon profil    
+    {% endblock %}
+
+    {% block body %}
+    <div class="container"> 
+        {# affichage de message de flasheses #}
+        {% for message in app.flashes('message') %}
+            <div class="col-md-6 text-center mx-auto">
+                <div class="alert alert-success mt-3" role="alert">{{ message }}</div> 
+            </div>  
+        {% endfor %}
+
+        <h3 class="text-center my-5">Bonjour {{ app.user.firstname}} {{ app.user.lastname}} !</h3>
+            <h4 class="text-center">Votre profil :</h4>
+            <div class="col-md-10 col-lg-6 mx-auto mt-3">
+                <div class="card text-center shadow-lg">
+                <div class="card-body">
+                    <p>Nom :{{ app.user.lastname }}</p>
+                    <p>Prénom :{{ app.user.firstname }}</p>
+                    <p>Email :{{ app.user.email }}</p>
+                    <p>Adresse :{{ app.user.address}}</p>
+                    <p>{{ app.user.zipcode }} {{ app.user.city }}</p>
+                    <p></p>
+                </div>
+            </div>
+            </div>
+            
+
+
+
+        <div class="col-md-6 text-center mx-auto my-3">
+            <div><a href="{{ path('profil_edit')}}">Modifier mes données</a></div>
+            {# <div><a href="#">Modifier le mot de passe</a></div> #}
+        </div>
+
+        {# si il'y a des orders => on affiche les orders de utilisateur connecté #}
+        {% if app.user.orders is empty %}
+
+            <h4 class="text-center my-5">Vous n'avez pas de commandes !</h4>
+            
+        {% else %}
+        {% if app.user.orders|length>1 %}
+            <h3 class="text-center mt-5">Vous avez {{ app.user.orders|length}} commandes</h3>
+            {% else %}
+            <h3 class="text-center mt-5">Vous avez {{ app.user.orders|length}} commande</h3>
+            {% endif %}
+            <div class="col-lg-6 col-md-10 mx-auto">
+                <table class="table text-center mb-5">
+                    <tr>
+                        <th>N°</th>
+                        <th>Date</th>
+                        <th>Montant</th>
+                        <th></th>
+                    </tr>
+                    
+                {% for order in app.user.orders %}
+                    <tr>
+                        <td>{{ order.id}}</td>
+                        <td>{{ order.createdAt|date('d/m/Y à H:i:s', 'Europe/Paris') }}</td>
+                        <td>{{ order.montant }} DT</td>
+                        <td><a href="{{ path('cart_details', {'id': order.id })}}">Voir les détails</a></td>
+                    </tr>    
+                {% endfor %}
+                </table>
+
+            </div>
+        {% endif %}
+
+           
+
+    </div>
+    {% endblock %}

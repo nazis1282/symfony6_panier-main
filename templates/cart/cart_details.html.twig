@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+    {% block title %}
+        Détails de commande    
+    {% endblock %}
+
+{% block body %}
+<div class="container detailsOrder">
+    <h4 class="my-5">Détails de votre commande N° {{ order.id}}<p class="fst-italic fw-ligth mt-2">faite le {{ order.createdAt|date('d/m/Y  à H:i', 'Europe/Paris')}}</p></h4>
+
+    <div class="col-lg-6 col-md-10 mx-auto mb-5"> 
+        <table class="table text-center">
+            <tr>
+                <th>Nom</th>
+                <th></th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Total</th>
+            </tr>    
+            {% for detail in details %}
+            <tr>
+                <td>{{ detail.products.name}}</td>
+                <td><img src="{{ asset('uploads/images/produits/' ~ detail.products.image) }}" width="50" alt="{{ detail.products.name }}"></td>
+                <td>{{ detail.price }}€</td>
+                <td>{{ detail.quantity }}</td>
+                <td>{{ detail.price * detail.quantity }}DT</td>
+            </tr>
+            {% endfor %}
+            <tfoot>
+                <td class="text-end" colspan="4">Montant total :</td>
+                <td><h5>{{ order.montant }} DT</h5></td>
+            </tfoot>  
+        </table>
+    </div>
+</div>   
+
+
+{% endblock %}

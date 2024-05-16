@@ -1,0 +1,61 @@
+{% extends "base_admin.html.twig" %} 
+
+{% block title %}
+    Produits
+{% endblock %}
+
+{% block body %}
+    <div class="container text-center">
+    <h2>Affichage des produits</h2>
+    <table class="table border my-5">
+        <tr class="text-center">
+            <th>ID</th>
+            <th>Categories</th>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Prix</th>
+            <th>Stock</th>
+            <th>Date</th>
+            <th>Image</th>
+            <th>Action</th>
+        </tr>
+        {% for produit in produits %}
+        <tr>
+            <td>{{ produit.id }}</td>
+            <td>{{ produit.categories.name }}</td>
+            <td>{{ produit.name }}</td>
+            <td>
+                {# ajout d'affichage de description de produit avec le button #}
+                <p class="my-3"><button type="button" class="btn btn-description" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Déscription de produit -></button>
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title fs-5" id="staticBackdropLabel">Déscription de produit</h3>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                            {{ produit.description }}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div></p>
+            </td>
+            <td>{{ produit.price }}</td>
+            <td>{{ produit.stock }}</td>
+            <td>{{ produit.createdAt|date('d/m/Y à H:i:s', 'Europe/Paris') }}</td>
+            <td><img src="{{ asset('uploads/images/produits/' ~ produit.image)}}" width="50" alt="{{ produit.name}}"></td>
+            <td><a class="btn" href="{{ path('admin_modif', {'id' : produit.id })}}">Modifier</a></td>
+        </tr>
+            
+        {% endfor %}
+    </table>
+
+
+
+    <a class="btn btn-success" href="{{ path('produit-edit')}}">Ajouter le nouveau produit</a>
+    </div>
+{% endblock %}

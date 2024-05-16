@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block body %}
+
+<div class="container panier">
+
+{% if items | length > 0 %}
+
+    <h2 class="text-center my-5">Votre Panier</h1>
+
+    {#  on présente nos produits dans un tableau#}
+
+<div class="col-lg-6 col-md-10 mx-auto">
+    <table class="table border shadow text-center mb-5">
+        <tr>
+            <th>Nom de produit</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+            <th>Total</th>
+            <th>Actions</th>
+        </tr>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.product.name}}</td>
+            <td>{{ item.product.price}}DT</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.product.price * item.quantity}}DT</td>
+            <td>
+                <a href="{{ path('cart_add', {id: item.product.id})}}" class="btn btn">
+                            <i class="bi bi-plus-lg"></i>
+                        </a>
+                        <a href="{{ path('cart_enlever', {id: item.product.id})}}" class="btn btn">
+                            <i class="bi bi-dash-lg"></i>
+                        </a>
+                <a href="{{ path('cart_remove', {'id': item.product.id})}}" class="btn btn"><i class="bi bi-trash3"></i></a>
+            </td>
+        </tr>    
+        {% endfor %}
+        <tfoot>
+            <tr>
+                <td class="text-end" colspan="3">Montant total :</td>
+                <td>{{ total }} DT</td>
+                <td>
+                    <a href="{{ path('delete')}}" class="btn btn-danger">
+                        <i class="bi bi-cart-x"></i>
+                    </a>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+<div class="d-flex flex-wrap justify-content-around my-5">
+    <a href="{{ path('produits')}}" class="btn_continuer my-2">Continuer les achats <i class="bi bi-arrow-right"></i></a>
+            
+        {% if not app.user %}
+        <div class="d-flex justify-content-around btn_cart">
+            <a class="btn_continuer" href="{{ path('app_login')}}">Pour valider : connectez-vous</a>
+            <p class="mx-3">ou</p>  
+            <a class="btn_continuer" href="{{ path('app_register')}}">Inscrivez-vous</a> 
+        </div>
+        {% else %}
+            <a href="{{ path('commande')}}" class="btn_valider my-2">Validez votre commande !</a>
+
+        {% endif %}
+</div>       
+{% else %}
+
+        <h3 class="text-center position-absolute top-50 start-50 translate-middle">Votre panier est vide !</h3>
+        
+{% endif %}
+</div>
+{% endblock %}

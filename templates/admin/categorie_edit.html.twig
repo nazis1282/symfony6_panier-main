@@ -1,0 +1,16 @@
+{% extends "base_admin.html.twig" %}
+
+{% block title %}
+    creation de catégorie
+{% endblock %}
+
+{% block body %}
+    <h2 class="text-center">Creation nouvelle catégorie</h2>
+
+    {{ form_start(catForm) }}
+    <div class=" d-flex col-md-6 mx-auto mt-5">
+        <div class="col-md-8 mx-auto">{{ form_row(catForm.name) }}</div>
+        <button type="submit" class="btn btn-secondary mx-auto my-3 col-md-2">Valider</button>
+    </div>
+    {{ form_end(catForm) }}
+{% endblock %}

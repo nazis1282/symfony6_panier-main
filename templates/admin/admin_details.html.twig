@@ -1,0 +1,44 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}
+    Détails de commande    
+{% endblock %}
+
+{% block body %}
+    <div class="container col-lg-6 col-md-10">
+        <h3 class="text-center">Détails de commande N° {{ order.id }}</h3>
+        <p class="text-center"> du {{ order.createdAt|date('d/m/Y à H:i:s', 'Europe/Paris')}}</p>
+        <p><span class="fst-italic">Id de client :</span> {{ order.users.id}}</p>
+        <p><span class="fst-italic">Nom :</span> {{ order.users.lastname }}</p>
+        <p><span class="fst-italic">Prénom :</span> {{ order.users.firstname }}</p>
+        <p><span class="fst-italic">Adresse :</span> {{ order.users.address }}</p>
+        <p>{{ order.users.zipcode }} {{ order.users.city }}</p>
+        <p><span class="fst-italic">Email :</span> {{ order.users.email }}</p>
+
+        <table class="table border text-center mt-3">
+            <tr>
+                <th>Id produit</th>
+                <th>Nom de produit</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Total de produit</th>
+            </tr>
+            {% for detail in details %}
+            <tr>
+                <td>{{ detail.products.id }}</td>
+                <td>{{ detail.products.name }}</td>
+                <td>{{ detail.products.price }} DT</td>
+                <td>{{ detail.quantity }}</td>
+                <td>{{ detail.products.price * detail.quantity }} DT</td>
+            </tr>    
+            {% endfor %}
+            <tfoot>
+                <tr>
+                    <td class="text-end" colspan="4">Total :</td>
+                    <td>{{ order.montant }} DT</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+{% endblock %}

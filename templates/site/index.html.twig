@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+Accueil
+{% endblock %}
+
+{% block body %}
+
+<div class="home">
+    <div class="container">
+        <div class="cadre_home col-md-10 col-lg-8 mx-auto">
+            <div class="p-5 bg-light border rounded-3">
+                <h2>Bonjour,</h2>
+                <p class="animated-paragraph">Vous êtes bien sur mon site-exemple E-commerce, qui est fait avec framework Symfony6!</p>
+                <a href="{{ path('produits')}}"><button class="btn_continuer" type="button">Commencer à tester <i class="bi bi-emoji-wink mx-2"></i></button></a>
+            </div>
+    </div>
+</div>
+</div>
+<style>
+.animated-paragraph {
+    animation: slide-in 1s ease-out;
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+</style>
+{% endblock %}

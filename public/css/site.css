@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital@1&family=Roboto&display=swap'); 
+
+h3, h2, h1, h4, h5, p, a, label, small {
+    font-family: 'Merriweather', serif;
+}
+
+.home, .connexion {
+    background-image: url('../uploads/logo/image_home.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 85vh;
+    margin-top: 0;
+    
+}
+
+
+/* page index.html.twig */
+.cadre_home {
+    position: relative;
+    top: 20vh;
+}
+
+.cadre_login {
+    position: relative;
+    top: 10vh;
+}
+
+#logo_img {
+    border-radius: 50%;
+}
+
+
+img {
+    border-radius: 5%;      
+}
+
+.nav_header, .nav_footer {
+    background-color: #CAFFBF;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* _______________style de menu "hamburger"__________________ */
+
+/* hamburger n'est pas affiché pour les grande ecran */
+#hamnav label, #hamburger {
+    display: none;
+}
+
+/* items pour grand ecrane */
+#menu_items {
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+
+}
+
+/* items pour grand ecrane */
+#menu_items {
+    display: flex;
+    margin-top: 10px;
+
+}
+/* les items de lien de menu */
+#menu_items a {
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+    text-align: center;
+}
+
+/* creation de bordure de bouton */
+.menu-btn {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+}
+
+/* contenu de bouton */
+.menu-btn_burger {
+    width: 30px;
+    height: 2px;
+    background-color: black;
+    transition: all .5s ease-in-out;
+}
+
+/* "bifor" avant de bar au milieu et "after" apres de bar au milieu */
+.menu-btn_burger::before, .menu-btn_burger::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 2px;  
+    background-color: black;
+    transition: all .5s ease-in-out;
+}
+
+.menu-btn_burger::before {
+    transform: translateY(-0.7em);
+}
+
+.menu-btn_burger::after {
+    transform: translateY(0.7em);
+}
+
+/* animation de bouton "burger" */
+.menu-btn.open .menu-btn_burger {
+    transform: translateX(-40px);
+    background: transparent;
+    box-shadow: none;
+}
+
+.menu-btn.open .menu-btn_burger::before {
+    transform: rotate(45deg) translate(35px, -35px);
+}
+
+.menu-btn.open .menu-btn_burger::after {
+    transform: rotate(-45deg) translate(35px, 35px);
+}
+
+
+/* affichage sur petit ecran */
+@media screen and (max-width: 768px)
+{
+    /* transformation à menu vertical */
+    #menu_items a {
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+        border-top: 1px solid #333;
+    }
+
+    #menu_items a:hover { 
+        color: black;
+        border-radius: 0;
+        opacity: 1;
+    }
+
+    /* affichage hamburger de petit ecran*/
+        #hamnav label { 
+        display: flex; 
+        color: black;
+        font-size: 1.2em;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+        }
+        
+    
+  /* on fait cacher le menu de grande ecran */
+    #menu_items { display: none; }
+
+    /* on affiche les items */
+    #hamnav input:checked ~ #menu_items { 
+        display: block; 
+    }
+}
+
+/* ____________fin de css de humburger___________ */
+
+/* page products.html.twig */
+.cadre_produit {
+    background-color: #FFD6A5;
+    border-radius: 5%;  
+}
+
+/* page details.html.twig */
+
+#details {
+    color: #1a620b;
+    text-decoration: none;
+}
+
+/* page cart.html.twig , contact ... */
+
+.panier, .details, .password, .profil {
+    min-height: 85vh;
+}
+
+.btn_valider {
+    background-color: #FFD6A5;
+    padding: 0.5em;
+    text-decoration: none;
+    color: black;
+    border-radius: 20px;
+}
+
+.btn_continuer {
+    background-color: #CAFFBF;
+    padding: 0.5em;
+    text-decoration: none;
+    color: black;
+    border-radius: 20px;
+    border-color: #1a620b;
+    
+}
+
+/* page cart_details.html.twig */
+.detailsOrder {
+    min-height: 80vh;
+}
+
+/* page connexion */
+.btn_connexion {
+    background-color: #CAFFBF;
+    border: #CAFFBF;
+    border-radius: 25px;
+    padding: 0.7em;
+}
+
+.btn_register, .btn_contact {
+    background-color: #FFD6A5;
+    border: #FFD6A5;
+    border-radius: 25px;
+    padding: 0.7em;
+}
+
+.bi-emoji-wink {
+    font-size: 1.5em;
+}
+
+/* responsive cart.html.twig */
+
+@media only screen and (max-width: 600px){
+    .btn_cart{
+        margin-top: 1.5em;
+    }
+
+    .details {
+        height: 60vh;
+    } 
+}
+
+
+
+    
+
+
+

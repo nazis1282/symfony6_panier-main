@@ -1,0 +1,32 @@
+{% extends "base_admin.html.twig" %}
+
+    {% block title %}
+        Commandes
+    {% endblock %}
+    
+    {% block body %}
+    <div class="container text-center">
+        <h2>Commandes</h2>
+        <table class="table border mt-5">
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Montant</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.users.id }}</td>
+                <td>{{ order.montant }} DT</td>
+                <td>{{ order.createdAt|date('d/m/Y à H:i:s', 'Europe/Paris') }}</td>
+                <td><a class="btn btn-success" href="{{ path('admin_details', {'id' : order.id})}}">Voir</a></td>
+            </tr>
+            
+            {% endfor %}
+    
+    
+        </table>
+    </div>
+    {% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}contact{% endblock %}
+
+    {% block body %} 
+        <div class="container">
+            <h3 class="text-center my-5">Messages reçues</h3>
+
+            <table class="table border">
+                <tr class="text-center">
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Email</th>
+                    <th>Civilité</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Sujet</th>
+                    <th>Message</th>
+                </tr>
+                {% for contact in contacts %}
+                <tr class="text-center">
+                    <td>{{ contact.id }}</td>
+                    <td>{{ contact.date|date('d:m:Y à H:i:s', 'Europe/Paris')}}</td>
+                    <td>{{ contact.email }}</td>
+                    <td>{{ contact.civilite }}</td>
+                    <td>{{ contact.nom }}</td>
+                    <td>{{ contact.prenom }}</td>
+                    <td>{{ contact.object }}</td>
+                    <td>{{ contact.message }}</td>
+                </tr>
+                    
+                {% endfor %}
+            </table>
+        </div>
+        
+    {% endblock %}

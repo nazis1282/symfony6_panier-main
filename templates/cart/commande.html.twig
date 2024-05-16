@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande{% endblock %}
+
+{% block body %}
+<div class="container panier">
+
+<h3 class="text-center my-5">Bonjour {{ app.user.firstname }} {{ app.user.lastname}}</h3>
+<h3 class="text-center">Votre commande N° {{ order.id }} pour un montant {{ order.montant }} DT</h3>
+        <h3 class="text-center my-5">Merci pour votre confiance !</h3>
+        <p class="text-center"><a href="{{ path('cart_details', {'id' : order.id})}}">Voir les détails -></a></p>
+
+</div>
+{% endblock %}

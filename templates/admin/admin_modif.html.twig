@@ -1,0 +1,31 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}
+    Modification produit
+    
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h3 class="text-center">Modification de produit</h3>
+    
+    {{ form_start(form) }}
+    <div class="col-md-8 mx-auto mt-5">
+        <div class="col-md-8 mx-auto">{{ form_row(form.name) }}</div>
+        <div class="col-md-8 mx-auto">{{ form_row(form.description) }}</div>
+        <div class="col-md-8 mx-auto">{{ form_row(form.price) }}</div>
+        <div class="col-md-8 mx-auto">{{ form_row(form.stock) }}</div>
+        <div class="col-md-8 mx-auto">{{ form_row(form.image) }}
+
+        {% if imageActuelle != false %}
+            <em class="mb-2">Vous pouvez télécharger une image si vous souhaitez la modifier</em>
+            <img src="{{ asset('uploads/images/produits/' ~ imageActuelle)}}" width="50" alt="">
+        {% endif %}
+        
+        </div>
+        {# <div class="col-md-8 mx-auto">{{ form_row(form.categories) }}</div> #}
+        <div class="col-md-8 mx-auto"><button type="submit" class="btn btn-secondary mx-auto my-3 col-md-2">Valider</button></div>
+    </div>
+    {{ form_end(form) }}
+</div>    
+{% endblock %}

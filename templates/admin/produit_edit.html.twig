@@ -1,0 +1,21 @@
+{% extends "base_admin.html.twig" %}
+
+{% block title %}
+    creation de produit
+{% endblock %}
+
+{% block body %}
+    <h2 class="text-center">Creation nouveau produit</h2>
+
+    {{ form_start(prodForm) }}
+    <div class="col-md-8 mx-auto mt-5">
+        <div class="col-md-8 mx-auto">{{ form_row(prodForm.name) }}</div>
+        <div class="col-md-8 mx-auto">{{ form_row(prodForm.description) }}</div>
+        <div class="col-md-8 mx-auto">{{ form_row(prodForm.price) }}</div>
+        <div class="col-md-8 mx-auto">{{ form_row(prodForm.stock) }}</div>
+        <div class="col-md-8 mx-auto">{{ form_row(prodForm.image) }}</div>
+        <div class="col-md-8 mx-auto">{{ form_row(prodForm.categories) }}</div>
+        <div class="col-md-8 mx-auto"><button type="submit" class="btn btn-secondary mx-auto my-3 col-md-2">Valider</button></div>
+    </div>
+    {{ form_end(prodForm) }}
+{% endblock %}

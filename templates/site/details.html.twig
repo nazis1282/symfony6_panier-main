@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    détails de produit
+{% endblock %}
+
+{% block body %}
+<div class="container details">
+    <div class="d-flex flex-column text-center">
+        <div class="card card-details col-md-8 col-lg-5 mx-auto  mt-xxl-5 mt-xl-2"> 
+            <div class="card-body shadow-lg">
+                <h3 class="my-3">{{ produit.name }}</h3>
+                <img src="{{ asset('uploads/images/produits/' ~ produit.image)}}" width="60%" alt="{{ produit.name }}">
+                <!-- Button de description -->
+                <p class="my-3"><button type="button" class="btn btn-description" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Description de produit</button>
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title fs-5" id="staticBackdropLabel">Description de produit</h3>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>{{ produit.description }}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div></p>
+                <h5>Prix: {{ produit.price }} DT</h5>
+                
+                {# condition pour ajouter au panier #}
+                {% if produit.stock > 1 %}
+                    <h4><a id="details" href="{{ path('cart_add', {'id': produit.id})}}">Ajouter au panier</a></h4>
+                {% else %}
+                        <p class="text-danger">Temporairement en rupture de stock</p>
+                {% endif %}  
+            </div>
+        </div> 
+    </div>
+</div>
+{% endblock %}

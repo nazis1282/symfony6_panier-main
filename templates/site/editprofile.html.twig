@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification profil{% endblock %}
+
+{% block body %}
+    <div class="container profil">
+        <h3 class="text-center my-5">Votre profil</h3>
+
+        <div>
+          
+    {{ form_start(form) }}
+    <div class="row col-md-8 mx-auto d-flex  mt-5">
+      
+       <div class="col-md-8 mx-auto">{{ form_row(form.lastname) }}</div>
+       <div class="col-md-8 mx-auto">{{ form_row(form.firstname) }}</div>
+       <div class="col-md-8 mx-auto">{{ form_row(form.address) }}</div>
+       <div class="col-md-8 mx-auto">{{ form_row(form.zipcode) }}</div>
+       <div class="col-md-8 mx-auto">{{ form_row(form.city) }}</div>
+       <button type="submit" class="btn btn-secondary mx-auto my-3 col-md-5">Valider</button>
+   {{ form_end(form) }}
+        </div>
+
+
+    </div>
+
+{% endblock %}

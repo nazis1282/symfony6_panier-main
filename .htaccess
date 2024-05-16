@@ -1,0 +1,15 @@
+RewriteEngine On
+RewriteBase /
+
+# Rewrite Regle 1: Rediriger toutes les requêtes pour les urls incluant le nom des répertoires et le nom des fichiers se trouvant dans public_html (www).
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /public/.*\ HTTPS/
+RewriteRule ^/(.*)$ panier-de-symfony.fr/$1 [R=301,L]
+
+# Rewrite Regle 2: Rediriger tous les www aux non-www et préserver le dossier et le chemin.
+RewriteCond %{HTTP_HOST} ^www.^panier-de-symfony\.fr [NC]
+RewriteRule ^/(.*)$ panier-de-symfony.fr/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^panier-de-symfony.fr$
+RewriteRule ^(.*) https://www.panier-de-symfony.fr/$1 [QSA,L,R=301]
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ /public/$1 [L]
